@@ -1,0 +1,16 @@
+# Dependencies and builds
+node_modules/
+dist/
+coverage/
+.vite/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Tooling and OS files
+.DS_Store
+*.log
+.eslintcache
+*.tsbuildinfo
