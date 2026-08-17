@@ -5,7 +5,6 @@ import { EventCard } from '../../../entities/event/ui/EventCard';
 import { EventTable } from '../../../entities/event/ui/EventTable';
 import { EventSearch } from '../../../features/event-search/ui/EventSearch';
 import { useAuth } from '../../../features/authentication/model/useAuth';
-import { AppContainer } from '../../../widgets/app-shell/ui/AppContainer';
 import { filterEvents } from '../helpers/filterEvents';
 
 export function EventCatalogPage() {
@@ -16,7 +15,6 @@ export function EventCatalogPage() {
   const filteredEvents = useMemo(() => filterEvents(events, query), [events, query]);
 
   return (
-    <AppContainer>
       <main className="px-5 py-5 sm:px-7">
         <div className="flex items-start justify-between">
           <div>
@@ -73,6 +71,5 @@ export function EventCatalogPage() {
           )}
         </section>
       </main>
-    </AppContainer>
   );
 }

@@ -11,7 +11,7 @@ export function EventCard({ event }: { event: EventItem }) {
           <h2 className="line-clamp-2  text-[14px] font-semibold leading-4 text-slate-800">
             {event.title}
           </h2>
-          <div className='gap-x-5'>
+          <div className='flex gap-2'>
             {event.category.map((item, index) => (
               <span className="detail-category" key={index}>
                 {item}
@@ -32,12 +32,12 @@ export function EventCard({ event }: { event: EventItem }) {
           {event.description}
         </p>
         <div className="mt-2 flex gap-1.5">
-          <button className="grid size-7 place-items-center border border-slate-200 text-[#258be4]">
-            <Bookmark size={11} />
+          <button className="grid size-8 place-items-center border border-slate-200 text-[#258be4]">
+            <Bookmark size={14} />
           </button>
           <Link
             to={`/events/${event.id}`}
-            className="flex h-7 flex-1 items-center justify-center bg-[#3292e6] text-[9px] font-medium text-white transition hover:bg-[#197fd4]"
+            className="flex h-8 flex-1 items-center justify-center bg-[#3292e6] text-[9px] font-medium text-white transition hover:bg-[#197fd4]"
           >
             View Details
           </Link>

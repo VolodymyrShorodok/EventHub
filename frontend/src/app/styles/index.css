@@ -299,7 +299,6 @@ button {
   padding: 0 10px;
   font-size: 16px;
   font-weight: 600;
-  
 }
 .btn-primary {
   background: #3292e6;
@@ -455,7 +454,6 @@ button {
   width: min(100%, 1120px);
   margin: 0 auto;
   padding: 28px 40px 45px;
- 
 }
 .detail-breadcrumb {
   display: flex;
@@ -521,6 +519,7 @@ button {
   font-size: 10px;
   font-weight: 700;
   justify-content: end;
+  gap: 10px;
 }
 .detail-title {
   max-width: 660px;
@@ -872,6 +871,8 @@ button {
   border: 1px solid #dce3ed;
   border-radius: 5px;
   background: #fff;
+  display: flex; 
+  flex-direction: column;
 }
 .similar-card .event-cover {
   height: 150px;
@@ -882,7 +883,6 @@ button {
 .similar-card p {
   display: flex;
   justify-content: space-between;
-  margin: 0;
   color: #94a3b8;
   font-size: 9px;
 }
@@ -906,19 +906,6 @@ button {
   color: #94a3b8;
   font-size: 10px;
   line-height: 14px;
-}
-.similar-card a {
-  display: flex;
-  height: 31px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 13px;
-  border: 1px solid #64748b;
-  border-radius: 3px;
-  color: #475569;
-  font-size: 10px;
-  font-weight: 600;
-  text-decoration: none;
 }
 .app-window [class~='text-[8px]'] {
   font-size: 10px;
@@ -1023,6 +1010,12 @@ button {
 .similar-card a {
   font-size: 12px;
 }
+.similar-tag {
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+}
+
 .event-program {
   padding-top: 22px;
 }
@@ -1195,8 +1188,4 @@ button {
   .app-window header {
     padding: 0 12px;
   }
-}
-.similar-tag {
-  display: flex;
-  justify-content: end;
 }

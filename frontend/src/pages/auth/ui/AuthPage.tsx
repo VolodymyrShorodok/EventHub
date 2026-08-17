@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../features/authentication/model/useAuth';
 import { AuthForm } from '../../../features/authentication/ui/AuthForm';
-import { AppContainer } from '../../../widgets/app-shell/ui/AppContainer';
+
 
 export function AuthPage() {
   const { pathname } = useLocation();
@@ -15,7 +15,7 @@ export function AuthPage() {
   if (user.role !== 'guest') return <Navigate to="/" replace />;
 
   return (
-    <AppContainer>
+    
       <main className="auth-layout grid gap-12 px-10 py-10 lg:grid-cols-2 lg:px-16">
         <section className="auth-panel auth-form-panel mx-auto w-full max-w-[430px]">
           <h1 className="text-[20px] font-bold text-slate-800">Welcome to Event Hub</h1>
@@ -77,6 +77,5 @@ export function AuthPage() {
           </div>
         </section>
       </main>
-    </AppContainer>
   );
 }
