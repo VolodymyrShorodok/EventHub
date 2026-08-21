@@ -8,9 +8,11 @@ import {
   Settings,
   Users,
 } from 'lucide-react';
-import { Link, NavLink } from 'react-router-dom';
-import { useAuth } from '../../../features/authentication/model/useAuth';
-import { Brand } from './Brand';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { clsx } from 'clsx';
+import { useAuth } from '@/features/authentication/model/useAuth';
+import { Brand } from '@/widgets/app-shell/ui/Brand';
+import { Button } from '@/shared/ui/Button';
 
 const baseItems = [['Events Discovery', '/', Search]] as const;
 const memberItems = [
@@ -25,44 +27,67 @@ const adminItems = [
 
 export function Sidebar() {
   const { user, setRole } = useAuth();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const isSignInPage = pathname === '/sign-in';
   const items = [
     ...baseItems,
     ...(user.role !== 'guest' ? memberItems : []),
     ...(user.role === 'admin' ? adminItems : []),
   ];
   return (
-    <aside className="flex w-[240px] shrink-0 flex-col border-r border-slate-200 bg-[#f8fafc] px-4 py-4">
+    <aside className="sticky top-0 flex h-screen w-[240px] shrink-0 self-start flex-col overflow-hidden border-r border-slate-200 bg-surface-sidebar px-4 py-4">
       <Brand />
-      <nav className="mt-2 space-y-1">
+      <nav className="mt-5 space-y-1">
         {items.map(([label, to, Icon]) => (
           <NavLink
             key={label}
             to={to}
             end={to === '/'}
-            className={({ isActive }) =>
-              `flex h-8 items-center gap-2 rounded-md px-2 text-[11px] transition ${isActive ? 'bg-[#eff6ff] font-medium text-[#1976d2]' : 'text-slate-600 hover:bg-slate-100'}`
-            }
+            className={({ isActive }) => {
+              const isSelected = to !== '#' && isActive;
+
+              return clsx(
+                'flex h-10 items-center gap-2 rounded-md px-3 text-ui transition',
+                isSelected
+                  ? 'bg-surface-active font-medium text-text-active shadow-[0_0_12px_rgba(37,139,228,0.22)]'
+                  : 'text-slate-600 hover:bg-white hover:text-accent hover:shadow-sm',
+              );
+            }}
           >
-            <Icon size={12} strokeWidth={1.8} />
+            <Icon size={15} strokeWidth={1.8} />
             {label}
           </NavLink>
         ))}
       </nav>
-      <div className="mt-auto border-t border-slate-200 pt-3">
+      <div className="mt-auto">
         {user.role !== 'guest' && (
-          <a href="#" className="sidebar-bottom-link">
-            <Settings size={12} /> Settings
+          <a
+            href="#"
+            className="flex h-10 items-center gap-2 rounded-md px-3 text-ui text-slate-600 transition hover:bg-white hover:text-accent hover:shadow-sm"
+          >
+            <Settings size={15} /> Settings
           </a>
         )}
-        {user.role === 'guest' ? (
-          <Link to="/Sign-in" className="sidebar-bottom-link">
-            <LogIn size={12} /> Sign In
-          </Link>
-        ) : (
-          <button className="sidebar-bottom-link w-full" onClick={() => setRole('guest')}>
-            <LogOut size={12} /> Sign Out
+        {user.role !== 'guest' ? (
+          <button
+            type="button"
+            className="relative mt-2 flex h-11 w-full items-center justify-center rounded-md bg-primary px-3 text-ui font-semibold text-white shadow-sm transition hover:bg-primary-hover hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+            onClick={() => setRole('guest')}
+          >
+            <LogOut className="absolute left-3" size={15} />
+            <span>Sign Out</span>
           </button>
-        )}
+        ) : !isSignInPage ? (
+          <Button
+            type="button"
+            onClick={() => navigate('/sign-in')}
+            className="relative mt-2 h-11 w-full rounded-md bg-primary px-3 text-ui font-semibold text-white shadow-sm hover:bg-primary-hover hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+          >
+            <LogIn className="absolute left-3" size={15} />
+            <span>Sign In</span>
+          </Button>
+        ) : null}
       </div>
     </aside>
   );

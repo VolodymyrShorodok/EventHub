@@ -1,4 +1,4 @@
-import type { EventItem } from '../../../entities/event/model/types';
+import type { EventItem } from '@/entities/event/model/types';
 
 export function filterEvents(events: EventItem[], query: string) {
   const normalizedQuery = query.trim().toLowerCase();

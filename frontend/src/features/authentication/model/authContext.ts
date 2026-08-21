@@ -1,7 +1,9 @@
 import { createContext } from 'react';
-import type { CurrentUser, UserRole } from '../../../entities/user/model/types';
+import type { CurrentUser, UserRole } from '@/entities/user/model/types';
+export { authUsers } from '@/features/authentication/mock/authUsers';
 
-export const authUsers: Record<UserRole, CurrentUser> = {
+/* Mock users live in the mock layer; this module only owns the context contract. */
+/* export const authUsers: Record<UserRole, CurrentUser> = {
   guest: {
     role: 'guest',
     firstName: 'Guest',
@@ -22,7 +24,7 @@ export const authUsers: Record<UserRole, CurrentUser> = {
     email: 'admin@eventhub.io',
     phone: '+380 000 555 66',
   },
-};
+}; */
 
 export type AuthContextValue = {
   user: CurrentUser;

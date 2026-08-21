@@ -1,9 +1,3 @@
-export type EventScheduleItem = {
-  time: string;
-  title: string;
-  description: string;
-};
-
 export type EventSpeaker = {
   name: string;
   role: string;
@@ -23,8 +17,9 @@ export type EventItem = {
   description: string;
   color?: string;
   totalPeople: number;
-  schedule?: EventScheduleItem[];
   speakers: EventSpeaker[];
   benefits?: string[];
   createdBy: string;
 };
+
+export type BaseEvent = Omit<EventItem, 'schedule' | 'speakers' | 'totalPeople'>;
