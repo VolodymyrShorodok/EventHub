@@ -26,7 +26,7 @@ const adminItems = [
 ] as const;
 
 export function Sidebar() {
-  const { user, setRole } = useAuth();
+  const { user, signOut } = useAuth();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isSignInPage = pathname === '/sign-in';
@@ -72,8 +72,8 @@ export function Sidebar() {
         {user.role !== 'guest' ? (
           <button
             type="button"
-            className="relative mt-2 flex h-11 w-full items-center justify-center rounded-md bg-primary px-3 text-ui font-semibold text-white shadow-sm transition hover:bg-primary-hover hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
-            onClick={() => setRole('guest')}
+            className="relative mt-2 flex h-11 w-full items-center justify-center rounded-md bg-primary px-3 text-ui font-semibold text-white shadow-sm transition hover:bg-primary-hover hover:shadow-md аfocus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+            onClick={signOut}
           >
             <LogOut className="absolute left-3" size={15} />
             <span>Sign Out</span>

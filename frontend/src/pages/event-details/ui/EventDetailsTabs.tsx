@@ -1,5 +1,5 @@
 import { eventDetailsTabs } from '@/pages/event-details/helpers/tabs';
-import type { EventDetailsTab } from '@/pages/event-details/helpers/types';
+import type { EventDetailsTab } from '@/pages/event-details/types';
 
 type Props = { activeTab: EventDetailsTab; onChange: (tab: EventDetailsTab) => void };
 

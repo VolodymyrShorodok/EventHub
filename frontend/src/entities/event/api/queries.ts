@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { events } from '@/entities/event/model/events';
 
-const delay = <T>(data: T) =>
-  new Promise<T>((resolve) => window.setTimeout(() => resolve(data), 1000));
+const delay = <T,>(data: T) => new Promise<T>((resolve) => window.setTimeout(() => resolve(data), 1000));
 
 export const eventQueryKeys = {
   all: ['events'] as const,

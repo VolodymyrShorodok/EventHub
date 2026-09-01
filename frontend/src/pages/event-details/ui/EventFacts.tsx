@@ -1,4 +1,4 @@
-import type { EventItem } from '@/entities/event/model/types';
+import type { EventItem } from '@/entities/event/types';
 import { getEventFacts } from '@/pages/event-details/helpers/getEventFacts';
 
 export function EventFacts({ event }: { event: EventItem }) {

@@ -8,6 +8,12 @@ coverage/
 .env
 .env.*
 !.env.example
+.envrc
+
+# Local Docker overrides and private keys
+docker-compose.override.yml
+*.pem
+*.key
 
 # Tooling and OS files
 .DS_Store

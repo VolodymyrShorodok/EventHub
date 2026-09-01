@@ -1,5 +1,5 @@
 import { Award, Download, Globe2, Video } from 'lucide-react';
-import type { EventItem } from '@/entities/event/model/types';
+import type { EventItem } from '@/entities/event/types';
 
 const benefits = [
   { icon: Globe2, title: 'Global Access', text: 'Stream keynotes live from anywhere.' },
