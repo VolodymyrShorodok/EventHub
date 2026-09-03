@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { events } from '@/entities/event/model/events';
+import { events } from '@/entities/event/mock/events';
 
 const delay = <T,>(data: T) => new Promise<T>((resolve) => window.setTimeout(() => resolve(data), 1000));
 
