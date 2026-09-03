@@ -1,0 +1,17 @@
+# Dependencies and generated output
+**/node_modules
+**/dist
+**/coverage
+**/.vite
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# VCS, tooling and OS files
+.git
+.gitignore
+.DS_Store
+**/*.log
+**/*.tsbuildinfo

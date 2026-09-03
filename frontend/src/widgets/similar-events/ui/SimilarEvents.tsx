@@ -1,7 +1,7 @@
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEventsQuery } from '@/entities/event/api/queries';
-import type { EventTag } from '@/entities/event/model/types';
+import type { EventTag } from '@/entities/event/types';
 import { Loader } from '@/shared/ui/Loader';
 import { formatEventDate } from '@/entities/event/helpers/formatEventDate';
 

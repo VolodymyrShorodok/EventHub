@@ -1,4 +1,4 @@
-import type { EventItem } from '@/entities/event/model/types';
+import type { EventItem } from '@/entities/event/types';
 import getInitials from '@/helpers/getInitials';
 
 export function EventSpeakers({ event }: { event: EventItem }) {

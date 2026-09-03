@@ -1,4 +1,4 @@
-import type { EventItem, EventSpeaker, BaseEvent } from '@/entities/event/model/types';
+import type { EventItem, EventSpeaker, BaseEvent } from '@/entities/event/types';
 
 const speakers: EventSpeaker[] = [
   { name: 'Dr. Maya Patel', role: 'AI Research Director, Luma Labs', color: '#5b7cfa' },
@@ -77,7 +77,7 @@ const baseEvents: BaseEvent[] = [
     title: 'Mobile Innovation Forum',
     img: '../../../public/images.jpg',
     category: ['Mobile', 'Frontend'],
-    date: '2026-01-18',
+    date: '2027-01-18',
     time: '10:00 AM',
     location: 'Tech Center, Berlin',
     description:
@@ -90,7 +90,7 @@ const baseEvents: BaseEvent[] = [
     title: 'Practical Machine Learning Day',
     img: '../../../public/images.jpg',
     category: ['AI'],
-    date: '2026-02-03',
+    date: '2027-02-03',
     time: '09:30 AM',
     location: 'Online',
     description:
@@ -103,7 +103,7 @@ const baseEvents: BaseEvent[] = [
     title: 'Frontend Architecture Summit',
     img: '../../../public/images.jpg',
     category: ['Frontend', 'New Technology'],
-    date: '2026-03-22',
+    date: '2027-03-22',
     time: '01:00 PM',
     location: 'Austin Convention Hall',
     description:
@@ -116,7 +116,7 @@ const baseEvents: BaseEvent[] = [
     title: 'Backend Reliability Workshop',
     img: '../../../public/images.jpg',
     category: ['Backend'],
-    date: '2026-04-10',
+    date: '2027-04-10',
     time: '11:00 AM',
     location: 'Cloud Campus, Dublin',
     description:
@@ -129,7 +129,7 @@ const baseEvents: BaseEvent[] = [
     title: 'Designing for Inclusive Products',
     img: '../../../public/images.jpg',
     category: ['Frontend', 'New Technology'],
-    date: '2026-05-08',
+    date: '2027-05-08',
     time: '02:30 PM',
     location: 'Design Hub, Toronto',
     description:
@@ -142,7 +142,7 @@ const baseEvents: BaseEvent[] = [
     title: 'AI Product Leadership Roundtable',
     img: '../../../public/images.jpg',
     category: ['AI', 'New Technology'],
-    date: '2026-06-14',
+    date: '2027-06-14',
     time: '04:00 PM',
     location: 'Innovation House, Paris',
     description: 'Product leaders share lessons from bringing responsible AI features to market.',
@@ -154,7 +154,7 @@ const baseEvents: BaseEvent[] = [
     title: 'Modern APIs and Integrations',
     img: '../../../public/images.jpg',
     category: ['Backend', 'New Technology'],
-    date: '2026-07-02',
+    date: '2027-07-02',
     time: '10:30 AM',
     location: 'Online',
     description:
@@ -167,7 +167,7 @@ const baseEvents: BaseEvent[] = [
     title: 'React Performance Clinic',
     img: '../../../public/images.jpg',
     category: ['Frontend'],
-    date: '2026-08-19',
+    date: '2027-08-19',
     time: '03:00 PM',
     location: 'Virtual Event',
     description:
@@ -232,7 +232,7 @@ const baseEvents: BaseEvent[] = [
     title: 'Data Strategy for Growing Teams',
     img: '../../../public/images.jpg',
     category: ['AI', 'Backend'],
-    date: '2026-01-24',
+    date: '2027-01-24',
     time: '01:30 PM',
     location: 'Data District, Stockholm',
     description:
@@ -245,7 +245,7 @@ const baseEvents: BaseEvent[] = [
     title: 'Open Source Maintainers Meetup',
     img: '../../../public/images.jpg',
     category: ['Frontend', 'Backend'],
-    date: '2026-02-12',
+    date: '2027-02-12',
     time: '05:00 PM',
     location: 'Community Space, Prague',
     description:
@@ -258,7 +258,7 @@ const baseEvents: BaseEvent[] = [
     title: 'Technology Trends for 2026',
     img: '../../../public/images.jpg',
     category: ['New Technology', 'AI'],
-    date: '2026-03-20',
+    date: '2027-03-20',
     time: '09:30 AM',
     location: 'Future Hall, London',
     description:

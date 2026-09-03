@@ -1,13 +1,13 @@
 import { Bookmark, CalendarDays, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import type { EventItem } from '@/entities/event/model/types';
+import type { EventItem } from '@/entities/event/types';
 import { formatEventDate } from '@/entities/event/helpers/formatEventDate';
 
 export function EventCard({ event }: { event: EventItem }) {
   const eventUrl = `/events/${event.id}`;
 
   return (
-    <article className="relative flex h-full flex-col overflow-hidden rounded-[3px] border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,.04)]">
+    <article className="relative flex h-full flex-col overflow-hidden rounded-[3px] border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,.04)] transition transform-gpu duration-200 hover:scale-102 hover:shadow-xl hover:border-primary/30 focus-within:shadow-xl focus-within:border-primary/30 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary/20 cursor-pointer">
       <Link to={eventUrl} aria-label={`View ${event.title}`} className="absolute inset-0 z-0" />
       <img
         className="pointer-events-none min-h-32 w-full flex-1 object-cover"

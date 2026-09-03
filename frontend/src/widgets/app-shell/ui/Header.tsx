@@ -1,13 +1,13 @@
-import { BellDot, ChevronRight, Home, Search } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { BellDot, ChevronRight, Home, Search, X } from 'lucide-react';
+import { useMemo, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/features/authentication/model/useAuth';
-import type { UserRole } from '@/entities/user/model/types';
+import type { UserRole } from '@/entities/user/types';
 import getInitials from '@/helpers/getInitials';
 import { Link, useLocation, useMatch } from 'react-router-dom';
 import { useEventQuery, useEventsQuery } from '@/entities/event/api/queries';
-import { filterEvents } from '@/pages/event-catalog/helpers/filterEvents';
+import { filterEvents } from '@/entities/event/helpers/filterEvents';
 import { Input } from '@/shared/ui/Input';
-import { Select } from '@/shared/ui/Select';
 import { Loader } from '@/shared/ui/Loader';
 import { formatEventDate } from '@/entities/event/helpers/formatEventDate';
 const roleLabels: Record<UserRole, string> = {
@@ -17,9 +17,12 @@ const roleLabels: Record<UserRole, string> = {
 };
 
 export function Header() {
-  const { user, setRole } = useAuth();
+  const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
-  const { pathname } = useLocation();
+  const [searchDropdownOpen, setSearchDropdownOpen] = useState(false);
+  const location = useLocation();
+  const { pathname } = location;
+  const navigate = useNavigate();
   const { data: events = [], isLoading: isEventsLoading } = useEventsQuery();
 
   const eventId = useMatch('/events/:eventId/*')?.params.eventId;
@@ -33,8 +36,19 @@ export function Header() {
     () => filterEvents(events, searchQuery).slice(0, 3),
     [events, searchQuery],
   );
-  const showSearchResults = searchQuery.trim().length > 0;
+  const showSearchResults = searchQuery.trim().length > 0 && searchDropdownOpen;
   const searchUrl = `/?search=${encodeURIComponent(searchQuery.trim())}`;
+  const urlQuery = new URLSearchParams(location.search).get('search');
+
+  useEffect(() => {
+    // Keep the search input synced when URL navigation changes the query.
+    setSearchQuery(urlQuery ?? '');
+  }, [urlQuery]);
+
+  useEffect(() => {
+    // open dropdown while typing
+    if (searchQuery.trim().length > 0) setSearchDropdownOpen(true);
+  }, [searchQuery]);
 
   return (
     <header className="flex h-20 items-center border-b border-slate-200 bg-white px-5 shadow-sm">
@@ -67,6 +81,19 @@ export function Header() {
               aria-label="Search events"
             />
           </label>
+          {(searchQuery.trim().length > 0 || urlQuery) && (
+            <button
+              type="button"
+              aria-label="Clear search"
+              onClick={() => {
+                setSearchQuery('');
+                navigate('/');
+              }}
+              className="absolute right-2 top-2 grid size-7 place-items-center rounded text-slate-500 hover:bg-slate-100"
+            >
+              <X size={14} />
+            </button>
+          )}
           {showSearchResults && (
             <div className="absolute right-0 top-8 z-20 min-h-32 w-full overflow-hidden rounded-md border border-slate-200 bg-white shadow-lg">
               {isEventsLoading ? (
@@ -94,7 +121,7 @@ export function Header() {
                   </div>
                   <Link
                     to={searchUrl}
-                    onClick={() => setSearchQuery('')}
+                    onClick={() => setSearchDropdownOpen(false)}
                     className="block border-t border-slate-100 px-3 py-2 text-center text-caption font-semibold text-accent hover:bg-slate-50"
                   >
                     See all results
@@ -111,19 +138,9 @@ export function Header() {
             <BellDot size={14} />
           </button>
         )}
-        <label className="flex items-center gap-1.5 text-ui font-medium text-slate-600">
+        <span className="flex items-center gap-1.5 text-ui font-medium text-slate-600">
           <span>{roleLabels[user.role]}</span>
-          <Select
-            value={user.role}
-            onChange={(event) => setRole(event.target.value as UserRole)}
-            aria-label="Select user role"
-            className="h-auto max-w-[18px] cursor-pointer rounded-none border-0 bg-transparent px-0 text-ui text-slate-600 outline-none focus:ring-0"
-          >
-            <option value="guest">Guest</option>
-            <option value="member">Participant</option>
-            <option value="admin">Administrator</option>
-          </Select>
-        </label>
+        </span>
         <div className="flex items-center gap-x-2 border-l border-slate-200 pl-4">
           <div className="text-right leading-tight flex flex-col place-items-center justify-center">
             <p className="text-ui font-semibold text-slate-700">
